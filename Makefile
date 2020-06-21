@@ -7,17 +7,21 @@ test:
 install-venv:
 	@tox -e dev
 
+.PHONY: isort
+isort:
+	@tox -e isort
+
 .PHONY: lint
 lint:
 	@tox -e lint
 
-.PHONY: code-formatter
-code-formatter:
-	@tox -e code-formatter
+.PHONY: format
+format:
+	@tox -e black
 
-.PHONY: code-formatter-check
-code-formatter-check:
-	@tox -e code-formatter -- --check
+.PHONY: format-check
+format-check:
+	@tox -e black -- --check
 
 # prompt_example> make bumpversion OPTIONS="-- --allow-dirty patch"
 .PHONY: bumpversion

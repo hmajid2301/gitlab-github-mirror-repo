@@ -16,25 +16,11 @@ test:lint:
     - pip install tox
     - make lint
 
-test:code-formatter:
+test:format:
   stage: test
   script:
     - pip install tox
-    - make code-formatter-check
-
-test:unit-tests:
-  stage: test
-  script:
-    - pip install tox
-    - make tests
-
-test:check-manifest:
-  stage: test
-  only:
-    - /^release/.*$/
-  script:
-    - pip install tox
-    - make check-manifest
+    - make format-check
 
 publish_package:staging:
   stage: pre-publish
