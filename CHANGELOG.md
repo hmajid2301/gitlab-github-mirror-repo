@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2020-06-22
+### Added
+  - Push to Docker hub.
+### Fixed
+  - Failing CI pipeline, added setup tools.
+
 ## [0.1.0] - 2020-06-21
 ### Added
   - Initial Release.
 
-[Unreleased]: https://gitlab.com/gitlab-automation-toolkit/gitlab-auto-release/-/compare/release%2F0.1.0...master
+[Unreleased]: https://gitlab.com/gitlab-automation-toolkit/gitlab-auto-release/-/compare/release%2F0.1.1...master
+[0.1.1]: https://gitlab.com/gitlab-automation-toolkit/gitlab-auto-release/-/compare/release%2F0.1.1...release%2F0.1.0
 [0.1.0]: https://gitlab.com/gitlab-automation-toolkit/gitlab-auto-mr-issue/-/tags/release%2F0.1.0

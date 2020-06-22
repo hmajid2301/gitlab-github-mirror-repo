@@ -2,10 +2,6 @@
    :target: https://gitlab.com/gitlab-automation-toolkit/gitlab-github-mirror-repo
    :alt: Pipeline Status
 
-.. image:: https://gitlab.com/gitlab-automation-toolkit/gitlab-github-mirror-repo/badges/master/coverage.svg
-   :target: https://gitlab.com/gitlab-automation-toolkit/gitlab-github-mirror-repo
-   :alt: Coverage
-
 .. image:: https://img.shields.io/pypi/l/gitlab-github-mirror-repo.svg
    :target: https://pypi.org/project/gitlab-github-mirror-repo/
    :alt: PyPI Project License
@@ -35,9 +31,9 @@ create new repositories on your behalf.
   pip install gitlab-github-mirror-repo
   gitlab_github_mirror_repo --help
 
-  Usage: gitlab_github_mirror_repo [OPTIONS]
+Usage: gitlab_github_mirror_repo [OPTIONS]
 
-    A Python script used to mirror repos.
+  A Python script used to mirror repos.
 
 Options:
   -l, --gitlab-private-token TEXT
@@ -50,6 +46,15 @@ Options:
   -r, --repo-name TEXT            The name of the repository on Github and
                                   Gitlab.  [required]
   --help                          Show this message and exit.
+
+Docker
+^^^^^^
+
+You can also use the Docker image like:
+
+.. code-block:: bash
+
+   docker run gitlab-github-mirror-repo -l "xxxx" -h "xxx" -u https://gitlab.com -r test123 
 
 Predefined Variables
 ^^^^^^^^^^^^^^^^^^^^

@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="gitlab-github-mirror-repo",
-    version="0.1.0 ",
+    version="0.1.1",
     description="Script used to create repos on Gitlab and Github. Then create a push mirror link between them Gitlab -> Github.",
     long_description=open("README.rst").read(),
     long_description_content_type="text/x-rst",

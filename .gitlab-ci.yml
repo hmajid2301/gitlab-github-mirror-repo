@@ -32,7 +32,7 @@ publish_package:staging:
   script:
     - pip install tox
     - make pypi-check
-    - make pypi-upload -- --repository-url https://test.pypi.org/legacy/
+    - make pypi-upload OPTIONS="-- --repository-url https://test.pypi.org/legacy/"
 
 publish-package:production:
   stage: publish
@@ -49,8 +49,10 @@ publish-package:production:
 publish-docker:
   stage: publish
   image: docker
+  only:
+    - master
   before_script:
-    - apk add python3-dev
+    - apk add python3-dev python3-setuptools
     - python3 setup.py sdist
   script:
     - export VERSION_TAG=$(cat setup.py | grep version | head -1 | awk -F= '{ print $2 }' | sed 's/[",]//g' | tr -d "'")
@@ -58,3 +60,23 @@ publish-docker:
     - docker build -t ${CI_REGISTRY_IMAGE}:latest -t ${CI_REGISTRY_IMAGE}:${VERSION_TAG}  .
     - docker push ${CI_REGISTRY_IMAGE}:latest
     - docker push ${CI_REGISTRY_IMAGE}:${VERSION_TAG}
+    - docker login -u hmajid2301 -p ${DOCKER_PASSWORD}
+    - export IMAGE_NAME="hmajid2301/gitlab-github-mirror-repo"
+    - docker build -t ${IMAGE_NAME}:latest -t ${IMAGE_NAME}:${VERSION_TAG}  .
+    - docker push ${IMAGE_NAME}:latest
+    - docker push ${IMAGE_NAME}:${VERSION_TAG}
+
+publish-readme:hub:
+  stage: publish
+  only:
+    - master
+  image:
+    name: registry.gitlab.com/hmajid2301/dockerhub-descriptions-updater
+    entrypoint: [""]
+  variables:
+    DOCKERHUB_USERNAME: hmajid2301
+    DOCKERHUB_PASSWORD: ${DOCKER_PASSWORD}
+    DOCKERHUB_REPO_NAME: markdown-mermaid-to-images
+  script:
+    - pandoc --from rst README.rst --to markdown_strict -o README.md
+    - node /app/index.js
