@@ -76,7 +76,7 @@ publish-readme:hub:
   variables:
     DOCKERHUB_USERNAME: hmajid2301
     DOCKERHUB_PASSWORD: ${DOCKER_PASSWORD}
-    DOCKERHUB_REPO_NAME: markdown-mermaid-to-images
+    DOCKERHUB_REPO_NAME: gitlab-github-mirror-repo
   script:
     - pandoc --from rst README.rst --to markdown_strict -o README.md
     - node /app/index.js
